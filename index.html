@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminar PPG Calon Guru IPS 2026 - Patriot Jiwo Tri Rahman</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            200: '#bae0fd',
+                            300: '#7cc8fb',
+                            400: '#36aff7',
+                            500: '#0c93e7',
+                            600: '#0074c7',
+                            700: '#015da3',
+                            800: '#064e86',
+                            900: '#0b416f',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(12, 147, 231, 0.85)), url('https://uny.ac.id/sites/default/files/2024-02/Kumbara%20Rektorat%20UNY_0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('beranda')">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                        IPS
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-slate-900 text-lg leading-tight">Seminar PPG IPS 2026</h1>
+                        <p class="text-xs text-brand-600 font-medium">Universitas Negeri Yogyakarta</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex space-x-1">
+                    <button onclick="navigateTo('beranda')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition" data-target="beranda">Beranda</button>
+                    <button onclick="navigateTo('profil')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition" data-target="profil">Profil Mahasiswa</button>
+                    <button onclick="navigateTo('sem1')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition" data-target="sem1">Refleksi Sem 1</button>
+                    <button onclick="navigateTo('sem2')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition" data-target="sem2">Refleksi Sem 2</button>
+                    <button onclick="navigateTo('refleksi-ppg')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition" data-target="refleksi-ppg">Refleksi Seluruh PPG</button>
+                    <button onclick="navigateTo('inovasi')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition" data-target="inovasi">Karya Inovasi</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-brand-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <button onclick="navigateTo('beranda')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Beranda</button>
+            <button onclick="navigateTo('profil')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Profil Mahasiswa</button>
+            <button onclick="navigateTo('sem1')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Refleksi Semester 1</button>
+            <button onclick="navigateTo('sem2')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Refleksi Semester 2</button>
+            <button onclick="navigateTo('refleksi-ppg')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Refleksi Seluruh PPG</button>
+            <button onclick="navigateTo('inovasi')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Karya Inovasi Pendidikan</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+
+        <!-- 1. BERANDA -->
+        <section id="beranda" class="page-section active">
+            <!-- Hero Section -->
+            <div class="hero-bg text-white py-24 px-4 sm:px-6 lg:px-8 shadow-xl relative">
+                <div class="max-w-5xl mx-auto text-center space-y-6">
+                    <span class="inline-block bg-brand-500/30 backdrop-blur-md text-brand-100 text-sm font-semibold px-4 py-1.5 rounded-full border border-brand-300/30">
+                        Jurnal Reflektif & Portofolio Digital
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        Seminar Pendidikan Profesi Guru<br>Calon Guru IPS Tahun 2026
+                    </h1>
+                    <p class="text-lg sm:text-xl text-brand-100 max-w-3xl mx-auto font-light leading-relaxed">
+                        Wadah reflektif bagi calon guru untuk mengasah kemampuan evaluasi diri secara kritis dan sistematis demi membentuk pendidik yang inovatif, responsif, dan adaptif.
+                    </p>
+                    <div class="pt-4 flex flex-wrap justify-center gap-4">
+                        <button onclick="navigateTo('profil')" class="bg-white text-brand-700 hover:bg-brand-50 font-bold px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-user-graduate mr-2"></i> Profil Mahasiswa
+                        </button>
+                        <button onclick="navigateTo('refleksi-ppg')" class="bg-brand-600/80 hover:bg-brand-600 text-white border border-brand-300/40 font-bold px-6 py-3 rounded-xl shadow-lg transition backdrop-blur-md transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-compass mr-2"></i> Jelajahi Refleksi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Deskripsi & Navigasi Ikon -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+                <!-- Pendahuluan -->
+                <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-brand-100 space-y-6">
+                    <div class="border-l-4 border-brand-600 pl-4">
+                        <h2 class="text-2xl font-bold text-slate-900">Pendahuluan Mata Kuliah</h2>
+                        <p class="text-brand-600 font-medium">Refleksi Kritis dan Penguatan Karakter Pendidik</p>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed text-justify">
+                        Mata kuliah Seminar PPG merupakan wadah reflektif bagi calon guru untuk mengasah kemampuan evaluasi diri secara kritis dan sistematis. Melalui kegiatan identifikasi visi pribadi, refleksi pengalaman belajar interdisipliner, serta penyusunan karya inovasi berbasis pengalaman paling bermakna, mata kuliah ini membentuk pendidik yang inovatif, responsif, dan adaptif. Refleksi ini menjadi kunci utama dalam meningkatkan efektivitas pembelajaran yang berpusat pada peserta didik serta siap menghadapi tantangan dunia pendidikan masa depan.
+                    </p>
+                    <p class="text-slate-700 leading-relaxed text-justify">
+                        Saya <strong>Patriot Jiwo Tri Rahman</strong> Prodi Pendidikan IPS Universitas Negeri Yogyakarta sedang melaksanakan kegiatan refleksi seluruh mata kuliah yang ada dengan diwadahi mata kuliah Seminar Pendidikan Profesi Guru. Perjalanan studi pada Program Pendidikan Profesi Guru (PPG) Calon Guru dirancang secara sistematis melalui kurikulum terintegrasi sebanyak 38 SKS selama dua semester. Seluruh mata kuliah dirangkai untuk menjembatani teori pedagogis, penguatan karakter diri, serta praktik lapangan yang kontekstual dan berakar pada realitas peserta didik dan saya sudah melaksanakan keseluruhan mata kuliah yang ada.
+                    </p>
+                </div>
+
+                <!-- 5 Ikon Utama Navigation Grid -->
+                <div>
+                    <div class="text-center mb-10">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Menu Utam Portofolio Seminar PPG</h2>
+                        <p class="text-slate-600 mt-2">Pilih salah satu komponen di bawah ini untuk melihat rincian dokumen dan refleksi.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <div onclick="navigateTo('profil')" class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm hover:shadow-md hover:border-brand-400 transition cursor-pointer group flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition">
+                                    <i class="fa-solid fa-id-card-clip"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition">Profil Mahasiswa</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Informasi lengkap tentang identitas, latar belakang pendidikan, filosofi mendidik, panggilan jiwa, serta visi, misi, dan tujuan sebagai guru professional.
+                                </p>
+                            </div>
+                            <div class="pt-6 flex items-center text-brand-600 font-semibold text-sm">
+                                Buka Profil <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div onclick="navigateTo('sem1')" class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm hover:shadow-md hover:border-brand-400 transition cursor-pointer group flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition">
+                                    <i class="fa-solid fa-book-bookmark"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition">Refleksi Semester 1</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Kumpulan refleksi mata kuliah semester 1 (18 SKS) meliputi peletakan fondasi pedagogis, teori belajar, filosofi pendidikan, dan dokumen pendukung.
+                                </p>
+                            </div>
+                            <div class="pt-6 flex items-center text-brand-600 font-semibold text-sm">
+                                Lihat Semester 1 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div onclick="navigateTo('sem2')" class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm hover:shadow-md hover:border-brand-400 transition cursor-pointer group flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition">Refleksi Semester 2</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Kumpulan refleksi mata kuliah semester 2 (20 SKS) yang berfokus pada penguatan mandiri, kepemimpinan pendidikan, PPL Mandiri, dan dokumen pendukung.
+                                </p>
+                            </div>
+                            <div class="pt-6 flex items-center text-brand-600 font-semibold text-sm">
+                                Lihat Semester 2 <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div onclick="navigateTo('refleksi-ppg')" class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm hover:shadow-md hover:border-brand-400 transition cursor-pointer group flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition">Refleksi Pengalaman Selama PPG</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Evaluasi dan masukan pengembangan diri holistik setelah memenuhi seluruh mata kuliah S1 dan S2, serta gambaran paradigma baru setelah Seminar PPG.
+                                </p>
+                            </div>
+                            <div class="pt-6 flex items-center text-brand-600 font-semibold text-sm">
+                                Baca Evaluasi Diri <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div onclick="navigateTo('inovasi')" class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm hover:shadow-md hover:border-brand-400 transition cursor-pointer group flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                            <div class="space-y-4">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl group-hover:bg-brand-600 group-hover:text-white transition">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition">Karya Inovasi Pendidikan</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Hasil akhir PPG Calon Guru berupa produk inovatif yang dirancang berbasis kebaruan, kreativitas, kontekstualitas, serta keefektifan pembelajaran.
+                                </p>
+                            </div>
+                            <div class="pt-6 flex items-center text-brand-600 font-semibold text-sm">
+                                Lihat Karya Inovasi <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PROFIL MAHASISWA -->
+        <section id="profil" class="page-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+                <!-- Header Card -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-brand-100 flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden bg-brand-100 flex-shrink-0 border-4 border-brand-200 shadow-md">
+                        <!-- Placeholder Foto Profil 'profil OK' -->
+                        <div class="w-full h-full flex flex-col items-center justify-center bg-brand-600 text-white p-4 text-center">
+                            <i class="fa-solid fa-user-astronaut text-6xl mb-2"></i>
+                            <span class="font-bold text-sm">Profil OK</span>
+                            <span class="text-xs text-brand-200 mt-1">Patriot Jiwo Tri Rahman</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-center md:text-left flex-grow">
+                        <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Mahasiswa PPG Calon Guru 2026
+                        </span>
+                        <h2 class="text-3xl font-extrabold text-slate-900">Patriot Jiwo Tri Rahman</h2>
+                        <p class="text-brand-600 font-medium">Program Studi Pendidikan IPS - Universitas Negeri Yogyakarta</p>
+                        <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start text-xs text-slate-600">
+                            <span class="bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200"><i class="fa-solid fa-id-card mr-1"></i> NIM: 25105260451</span>
+                            <span class="bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200"><i class="fa-solid fa-location-dot mr-1"></i> Kulon Progo, DIY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filosofi & Panggilan Jiwa -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Sang Pewaris dari Bumi Menoreh -->
+                    <div class="bg-white rounded-2xl p-8 border border-brand-100 shadow-sm space-y-4">
+                        <div class="flex items-center space-x-3 text-brand-600">
+                            <i class="fa-solid fa-mountain-sun text-2xl"></i>
+                            <h3 class="text-xl font-bold text-slate-900">Sang Pewaris Dari Bumi Menoreh</h3>
+                        </div>
+                        <p class="italic font-medium text-brand-700 bg-brand-50 p-3 rounded-lg border-l-4 border-brand-500">
+                            “Desa mawa cara, negara mawa tata.”
+                        </p>
+                        <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                            Setiap desa punya adat dan ceritanya sendiri — begitu pula Kulon Progo. Saya Patriot Jiwo Tri Rahman, mahasiswa Program Profesi Guru (Calon Guru) Pendidikan IPS tahun 2026. Lahir dan tumbuh di Kulon Progo — tanah yang terbentuk dari sejarah panjang Pegunungan Menoreh hingga lembah Sungai Progo — saya belajar bahwa ilmu tidak hanya hidup di dalam buku, tetapi juga dalam cerita tutur dan kearifan lokal masyarakatnya. Semangat itulah yang saya bawa ke dalam kelas: bahwa pembelajaran IPS paling bermakna ketika berangkat dari tanah yang kita pijak sendiri.
+                        </p>
+                        <blockquote class="text-brand-800 font-semibold text-sm border-t border-brand-100 pt-4 mt-2">
+                            “Akar yang kuat tumbuh dari tanah yang penuh cerita.”
+                            <footer class="text-xs text-slate-500 font-normal mt-1">— Patriot Jiwo Tri Rahman</footer>
+                        </blockquote>
+                    </div>
+
+                    <!-- Panggilan Jiwa -->
+                    <div class="bg-white rounded-2xl p-8 border border-brand-100 shadow-sm space-y-4">
+                        <div class="flex items-center space-x-3 text-brand-600">
+                            <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                            <h3 class="text-xl font-bold text-slate-900">Panggilan Jiwa & Citra Guru Profesional</h3>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                            Saya memilih jalan menjadi pendidik karena satu keyakinan: perubahan paling tahan lama dimulai dari dalam ruang kelas. Tumbuh di daerah mengajarkan saya bahwa keterbatasan sumber daya bukan penghalang untuk menyalakan harapan generasi muda.
+                        </p>
+                        <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                            Sebagai calon guru IPS, saya meyakini bahwa ilmu sosial bukan sekadar hafalan fakta dan konsep, melainkan cermin untuk memahami realitas kehidupan. Saya berkomitmen menjadi pendidik yang tidak hanya menyampaikan materi, tetapi juga bertindak sebagai fasilitator, motivator, serta teladan yang menghadirkan pembelajaran kontekstual dan adaptif.
+                        </p>
+                        <blockquote class="text-brand-800 font-semibold text-sm border-t border-brand-100 pt-4 mt-2">
+                            “Guru yang baik bukan yang memberikan jawaban, melainkan yang membantu murid menemukan keberanian untuk bertanya.”
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Visi, Misi, dan Strategi -->
+                <div class="bg-white rounded-2xl p-8 border border-brand-100 shadow-sm space-y-8">
+                    <div class="text-center max-w-2xl mx-auto space-y-2">
+                        <h3 class="text-2xl font-bold text-slate-900">Visi, Misi, dan Strategi Mendidik</h3>
+                        <p class="text-slate-600 text-sm">Komitmen nyata dalam mentransformasi pembelajaran IPS di Indonesia</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-brand-50 rounded-xl p-6 border border-brand-200 space-y-3">
+                            <h4 class="font-bold text-brand-800 flex items-center">
+                                <i class="fa-solid fa-flag text-brand-600 mr-2"></i> Visi Pribadi untuk Pendidikan Indonesia
+                            </h4>
+                            <p class="text-slate-700 text-sm leading-relaxed text-justify">
+                                Menjadikan Pendidikan Indonesia yang berkualitas, inklusif, dan berpusat pada murid sehingga setiap anak memiliki kesempatan yang sama untuk mengembangkan potensi, keterampilan, serta karakter positifnya guna mencetak generasi yang beriman, berakhlak mulia, bernalar kritis, kreatif, mandiri, dan siap menghadapi tantangan masa depan tanpa meninggalkan nilai-nilai budaya bangsa.
+                            </p>
+                        </div>
+
+                        <div class="bg-brand-50 rounded-xl p-6 border border-brand-200 space-y-3">
+                            <h4 class="font-bold text-brand-800 flex items-center">
+                                <i class="fa-solid fa-user-check text-brand-600 mr-2"></i> Visi Pribadi sebagai Calon Guru
+                            </h4>
+                            <p class="text-slate-700 text-sm leading-relaxed text-justify">
+                                Menjadi calon guru yang profesional, reflektif, dan inspiratif yang mampu membimbing murid untuk mengembangkan potensi, keterampilan, dan karakter positifnya. Saya ingin menjadi pendidik yang tidak hanya menyampaikan materi pembelajaran, tetapi juga menjadi fasilitator, motivator, dan teladan yang menciptakan lingkungan belajar yang aman, menyenangkan, serta mendorong murid untuk belajar sesuai dengan kebutuhan, minat, dan kemampuannya.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Misi Aksi -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-slate-900 text-lg">Komitmen Langkah Nyata (Misi Aksi)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                                <span class="font-bold text-brand-600 text-sm">1. Pembelajaran Berpusat pada Murid</span>
+                                <p class="text-xs text-slate-600">Merancang strategi pembelajaran yang berdiferensiasi dan kontekstual sesuai karakteristik unik siswa.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                                <span class="font-bold text-brand-600 text-sm">2. Penguatan Potensi & Umpan Balik</span>
+                                <p class="text-xs text-slate-600">Memberikan bimbingan, motivasi, dan evaluasi yang membangun untuk mengoptimalkan potensi murid.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                                <span class="font-bold text-brand-600 text-sm">3. Penanaman Karakter & Keteladanan</span>
+                                <p class="text-xs text-slate-600">Mengintegrasikan nilai-nilai luhur Pancasila dan kearifan lokal melalui pembiasaan positif di kelas.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                                <span class="font-bold text-brand-600 text-sm">4. Pengembangan Diri Berkelanjutan</span>
+                                <p class="text-xs text-slate-600">Meningkatkan kompetensi pedagogik, profesional, sosial, dan kepribadian secara berkelanjutan melalui refleksi kritis.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 md:col-span-2 lg:col-span-2">
+                                <span class="font-bold text-brand-600 text-sm">5. Kemitraan Kolaboratif</span>
+                                <p class="text-xs text-slate-600">Membangun sinergi yang kuat dengan orang tua, rekan sejawat, dan komunitas untuk mendukung tumbuh kembang murid secara holistik.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dokumen Visi Misi Link -->
+                    <div class="pt-4 border-t border-brand-100 flex justify-between items-center flex-wrap gap-4">
+                        <span class="text-sm font-semibold text-slate-700">Dokumen Visi & Misi Lengkap:</span>
+                        <a href="https://drive.google.com/file/d/1Mgx1zwnCD5hyU2A5I4Gk__lQHhCu4_FK/view?usp=sharing" target="_blank" class="inline-flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg shadow transition">
+                            <i class="fa-solid fa-file-pdf mr-2"></i> Buka Dokumen Visi Misi di Google Drive
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. REFLEKSI SEMESTER 1 -->
+        <section id="sem1" class="page-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+                <!-- Section Header -->
+                <div class="bg-white rounded-2xl p-8 border border-brand-100 shadow-sm space-y-3">
+                    <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                        Kurikulum PPG Semester 1 (18 SKS)
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Semester 1: Peletakan Fondasi dan Integrasi Terbimbing</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Pada semester pertama, fokus utama tertuju pada penguatan filosofi dasar, pemahaman mendalam terhadap keberagaman murid, serta penguasaan strategi pembelajaran mendalam (deep learning).
+                    </p>
+                </div>
+
+                <!-- Accordion Refleksi Matakuliah -->
+                <div class="space-y-6">
+
+                    <!-- MK 1: Pemahaman tentang Peserta Didik -->
+                    <div class="bg-white rounded-2xl border border-brand-100 shadow-sm overflow-hidden">
+                        <div class="p-6 bg-brand-50 border-b border-brand-100 flex justify-between items-center">
+                            <div>
+                                <span class="text-xs font-bold text-brand-600">3 SKS • Wajib</span>
+                                <h3 class="text-xl font-bold text-slate-900">Pemahaman tentang Peserta Didik dan Pembelajaran</h3>
+                                <p class="text-xs text-slate-600">Mengasah kemampuan profiling murid dan merancang pembelajaran yang berpusat pada peserta didik.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8 space-y-6 text-sm text-slate-700">
+                            <!-- Identitas LK -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                                <div><strong>Nama:</strong> Patriot Jiwo Tri Rahman</div>
+                                <div><strong>NIM:</strong> 25105260451</div>
+                                <div><strong>Prodi:</strong> Ilmu Pengetahuan Sosial</div>
+                            </div>
+
+                            <h4 class="font-bold text-slate-900 text-base border-b pb-2">LEMBAR KERJA 2 (LK 2) REFLEKSI PENGALAMAN BELAJAR</h4>
+
+                            <!-- Table LK 2 -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse border border-slate-200 text-left text-xs sm:text-sm">
+                                    <thead>
+                                        <tr class="bg-brand-100 text-brand-900">
+                                            <th class="border border-slate-200 p-3 w-1/4">Indikator / Pertanyaan</th>
+                                            <th class="border border-slate-200 p-3">Uraian Jawaban</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-semibold bg-slate-50" colspan="2">Refleksi pengalaman belajar dalam konteks sebagai calon guru (connection, challenge, concept, change).</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">1. Apa keterkaitan materi perkuliahan dengan peran saya sebagai calon guru?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Mata kuliah Pemahaman tentang Peserta Didik dan Pembelajaran memberikan pemahaman mendalam bahwa karakter, motivasi, dan latar belakang psikologis peserta didik sangat memengaruhi keberhasilan belajar. Sebagai calon guru, saya tidak bisa menyamaratakan strategi mengajar tanpa menganalisis masalah nyata di kelas. Pemahaman ini saya terapkan dalam menyusun rancangan strategi pembelajaran untuk mengatasi masalah spesifik di Kelas XI IPS 2 yang cenderung pasif, tidak mandiri, dan kurang termotivasi. Melalui mata kuliah ini, saya menyadari peran penting guru dalam menciptakan lingkungan belajar yang aman secara psikologis (psychological safety) serta memberikan bantuan bertahap (scaffolding) agar peserta didik dapat berkembang menjadi pembelajar yang mandiri.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">2. Apa saja materi perkuliahan yang berbeda dari praktik yang saya lakukan selama ini?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Sebelum mempelajari mata kuliah ini, saya cenderung fokus pada penguasaan materi ajar dan penyampaian konten tanpa mempertimbangkan kesiapan psikologis peserta didik atau cara mereka membangun pengetahuan secara sosial. Saya juga sering kali memberikan tugas besar secara langsung tanpa bimbingan yang terstruktur. Setelah mengikuti perkuliahan ini, saya memahami pentingnya mengintegrasikan teori-teori belajar formal (seperti Humanisme, Konstruktivisme Sosial, dan Teori Belajar Sosial) ke dalam strategi konkret. Praktik baru yang saya pelajari dan berbeda dari sebelumnya adalah pentingnya membangun psychological safety agar murid berani berpendapat secara sukarela, serta memecah proyek besar menjadi tahapan-tahapan kecil yang dipandu lembar kerja untuk mencegah plagiasi (copy-paste).
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">3. Apa saja konsep utama dan penting yang telah saya pelajari sebagai calon guru?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Konsep utama yang saya pelajari meliputi: (1) Konstruktivisme Sosial (Vygotsky) melalui konsep Zone of Proximal Development (ZPD) dan Scaffolding, di mana bimbingan guru diberikan secara bertahap lalu dikurangi seiring meningkatnya kemandirian murid; (2) Teori Humanisme (Carl Rogers) mengenai pentingnya Psychological Safety dan Unconditional Positive Regard untuk menumbuhkan keberanian murid tanpa takut dihakimi; serta (3) Teori Belajar Sosial (Bandura) & Konstruktivisme (Bruner) mengenai Think-Aloud Modeling (pemodelan proses berpikir), Self-Efficacy, dan Inquiry/Discovery Learning untuk memicu motivasi intrinsik melalui eksplorasi nyata.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">4. Apa saja perubahan yang ingin saya lakukan setelah mendapatkan materi perkuliahan ini?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Setelah mendapatkan materi ini, saya ingin secara konsisten menerapkan pendekatan yang berpusat pada peserta didik (student-centered learning) dengan mengutamakan kenyamanan psikologis mereka. Saya akan mengganti metode penunjukan acak yang menegangkan dengan strategi seperti Think-Pair-Share berbasis kesukarelaan. Saya juga berkomitmen untuk selalu merancang pembelajaran berbasis proyek (Project-Based Learning) secara bertahap dan terstruktur agar melatih kolaborasi sekaligus kemandirian murid. Selain itu, saya akan membiasakan penggunaan Think-Aloud Modeling dan penilaian formatif seperti exit ticket untuk memantau proses berpikir dan tingkat pemahaman murid secara berkala.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-semibold bg-slate-50" colspan="2">Analisis Artefak Pembelajaran</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">1. Mana saja artefak pembelajaran yang dapat saya jadikan bukti dukung?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Artefak yang saya gunakan sebagai bukti pendukung adalah "Lembar Kerja Aktivitas 3b Rancangan Alternatif Strategi Pembelajaran (Tabel 3.3)" yang dikerjakan bersama tim kelompok. Dokumen ini memuat sintesis rancangan strategi alternatif untuk mengatasi masalah motivasi dan kemandirian belajar di Kelas XI IPS 2.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">2. Mengapa artefak tersebut yang saya pilih?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Saya memilih artefak tersebut karena menunjukkan kemampuan nyata saya dan kelompok dalam menerjemahkan teori-teori psikologi perkembangan dan teori belajar ke dalam rancangan aktivitas pembelajaran yang konkret di kelas. Artefak ini secara utuh membuktikan bagaimana landasan teoretis (Vygotsky, Rogers, Bandura, Bruner) digunakan sebagai solusi atas masalah riil peserta didik yang pasif dan kurang mandiri.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">3. Bagian mana dari artefak ini yang mendukung hasil refleksi saya?</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Bagian artefak yang paling mendukung refleksi saya meliputi:<br>
+                                                1. Strategi 1 (Think-Pair-Share berbasis Psychological Safety): Penerapan teori Humanisme untuk membangun kepercayaan diri murid.<br>
+                                                2. Strategi 2 (PjBL Bertahap dengan Panduan Terstruktur): Penerapan scaffolding bertahap dan pembagian peran jelas.<br>
+                                                3. Strategi 3 (Think-Aloud Modeling & Inquiry Discovery Learning): Pemodelan berpikir analitis dan penggunaan exit ticket.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">4. Kegiatan yang sudah terlaksana dan belum terlaksana</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                <strong>Sudah Terlaksana:</strong> Mengidentifikasi masalah motivasi di XI IPS 2, merancang 3 strategi alternatif, menyelaraskan aktivitas dengan dasar teoretis.<br>
+                                                <strong>Belum Terlaksana:</strong> Mengimplementasikan rancangan secara langsung di Kelas XI IPS 2, menguji efektivitas lembar kerja terstruktur & rubrik peer-review, serta mengevaluasi dampak psikologis penerapan psychological safety.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-200 flex justify-end">
+                                <a href="https://drive.google.com/file/d/1Mgx1zwnCD5hyU2A5I4Gk__lQHhCu4_FK/view?usp=sharing" target="_blank" class="inline-flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg shadow transition">
+                                    <i class="fa-solid fa-file-pdf mr-2"></i> Artefak Penugasan (Google Drive)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MK 2: Pembelajaran Kreatif dan Inovatif -->
+                    <div class="bg-white rounded-2xl border border-brand-100 shadow-sm overflow-hidden">
+                        <div class="p-6 bg-brand-50 border-b border-brand-100 flex justify-between items-center">
+                            <div>
+                                <span class="text-xs font-bold text-brand-600">2 SKS • MK Pilihan</span>
+                                <h3 class="text-xl font-bold text-slate-900">Pembelajaran Kreatif dan Inovatif</h3>
+                                <p class="text-xs text-slate-600">Mengembangkan media dan metode belajar yang interaktif, kontekstual, serta berbasis kearifan lokal.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8 space-y-6 text-sm text-slate-700">
+                            <!-- Table LK 2 -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse border border-slate-200 text-left text-xs sm:text-sm">
+                                    <thead>
+                                        <tr class="bg-brand-100 text-brand-900">
+                                            <th class="border border-slate-200 p-3 w-1/4">Indikator / Pertanyaan</th>
+                                            <th class="border border-slate-200 p-3">Uraian Jawaban</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">1. Keterkaitan Materi</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Mata kuliah ini memberikan pemahaman bahwa guru bertugas merancang pengalaman belajar yang mengembangkan kreativitas, berpikir kritis, kolaborasi, dan pemecahan masalah. Diterapkan melalui materi Uang dan Lembaga Keuangan memanfaatkan Canva Site/Canva AI sebagai media interaktif.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">2. Perbedaan dari Praktik Sebelumnya</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Teknologi tidak lagi sekadar media presentasi, melainkan bagian dari desain pembelajaran aktif dengan integrasi TPACK, PBL, PjBL, simulasi digital, dan asesmen proses.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">3. Konsep Utama</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Pembelajaran berpusat pada siswa, integrasi TPACK, Problem/Project Based Learning, simulasi digital, asesmen berbasis growth mindset, dan analisis situasi pra-pembelajaran.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">4. Rencana Perubahan</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Memanfaatkan teknologi secara bermakna, memperbanyak studi kasus dan proyek kontekstual, serta membiasakan refleksi dan asesmen formatif.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">Analisis Artefak & Keterlaksanaan</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                <strong>Artefak:</strong> Rancangan "Pembelajaran Materi Uang & Lembaga Keuangan" berbasis Canva Site/AI.<br>
+                                                <strong>Terlaksana:</strong> Merancang modul ajar & media Canva, menerapkan pendekatan kontekstual pencatatan pengeluaran.<br>
+                                                <strong>Belum Terlaksana:</strong> Implementasi langsung ke siswa karena keterbatasan waktu dan evaluasi efektivitas media.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-200 flex justify-end">
+                                <a href="https://drive.google.com/file/d/18rj1FgcrzmBUw3SiK3128BFk3Y8QjTWP/view?usp=sharing" target="_blank" class="inline-flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg shadow transition">
+                                    <i class="fa-solid fa-file-pdf mr-2"></i> Artefak Penugasan (Google Drive)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MK 3: Filosofi Pendidikan dan Pendidikan Nilai -->
+                    <div class="bg-white rounded-2xl border border-brand-100 shadow-sm overflow-hidden">
+                        <div class="p-6 bg-brand-50 border-b border-brand-100 flex justify-between items-center">
+                            <div>
+                                <span class="text-xs font-bold text-brand-600">2 SKS • Wajib</span>
+                                <h3 class="text-xl font-bold text-slate-900">Filosofi Pendidikan dan Pendidikan Nilai</h3>
+                                <p class="text-xs text-slate-600">Menanamkan akar pemikiran Ki Hadjar Dewantara dan pemaknaan nilai-nilai luhur Pancasila dalam praktik mendidik.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8 space-y-6 text-sm text-slate-700">
+                            <!-- Table LK 2 -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse border border-slate-200 text-left text-xs sm:text-sm">
+                                    <thead>
+                                        <tr class="bg-brand-100 text-brand-900">
+                                            <th class="border border-slate-200 p-3 w-1/4">Indikator / Pertanyaan</th>
+                                            <th class="border border-slate-200 p-3">Uraian Jawaban</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">1. Keterkaitan Materi</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Guru memiliki tanggung jawab moral menuntun karakter peserta didik melalui pemikiran Ki Hadjar Dewantara (guru sebagai among) serta integrasi nilai Pancasila via modeling, habituation, dan refleksi.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">2. Perbedaan dari Praktik Sebelumnya</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Pendidikan nilai bukan sekadar hafalan normatif atau tugas guru PPKn/Agama semata, melainkan diintegrasikan secara organik dalam setiap interaksi pedagogis di kelas.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">3. Konsep Utama</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Landasan Filosofis KHD, Growth Mindset (Carol Dweck), Kerangka Ekologi Bronfenbrenner, dan Tiga Peran Sentral Guru (Living Values Model, Perancang Ekosistem, Fasilitator Refleksi).
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">4. Rencana Perubahan</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                Integrasi nilai implisit dalam modul ajar, institusionalisasi refleksi terstruktur, umpan balik berbasis pertumbuhan, dan refleksi profesional berkelanjutan.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-200 p-3 font-medium">Analisis Artefak & Keterlaksanaan</td>
+                                            <td class="border border-slate-200 p-3 text-justify">
+                                                <strong>Artefak:</strong> Tabel Matriks Connect-Extend-Challenge & Dokumen Diskusi Reflektif.<br>
+                                                <strong>Terlaksana:</strong> Menganalisis keterkaitan konsep, mengidentifikasi tantangan lapangan, dan merumuskan komitmen operasional.<br>
+                                                <strong>Belum Terlaksana:</strong> Menguji cobakan desain terintegrasi nilai di sekolah riil dan melaksanakan evaluasi berkelanjutan.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-200 flex justify-end">
+                                <a href="https://drive.google.com/file/d/14WEp4KI4WqPCCY-05ryjiQsc3v7sSTdG/view?usp=sharing" target="_blank" class="inline-flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg shadow transition">
+                                    <i class="fa-solid fa-file-pdf mr-2"></i> Artefak Penugasan (Google Drive)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MK Lainnya di Semester 1 Summary List -->
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-4">
+                        <h4 class="font-bold text-slate-900">Mata Kuliah Semester 1 Lainnya</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>PMA Dasar (3 SKS)</strong>
+                                <p class="text-slate-600 mt-1">Pembelajaran Mendalam & Asesmen Dasar: Menyusun instrumen evaluasi diagnostik mengenali potensi murid.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>Growth Mindset (2 SKS)</strong>
+                                <p class="text-slate-600 mt-1">Pola Pikir Bertumbuh dalam Pembelajaran: Membentuk ketahanan mental dan reflektif merespons tantangan.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>PPL 1 Terbimbing (6 SKS)</strong>
+                                <p class="text-slate-600 mt-1">Praktik Pengalaman Lapangan 1: Asistensi mengajar terbimbing di sekolah mitra terhubung dengan teori.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. REFLEKSI SEMESTER 2 -->
+        <section id="sem2" class="page-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+                <!-- Section Header -->
+                <div class="bg-white rounded-2xl p-8 border border-brand-100 shadow-sm space-y-3">
+                    <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                        Kurikulum PPG Semester 2 (20 SKS)
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Semester 2: Penguatan Mandiri, Kepemimpinan, dan Profesionalisme</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Semester kedua berfokus pada kemandirian praktik mengajar, penguatan hubungan sosial-emosional, serta kepemimpinan pendidikan yang berdampak luas.
+                    </p>
+                </div>
+
+                <!-- Cards Ringkasan Matakuliah Sem 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-3">
+                        <span class="text-xs font-bold text-brand-600">2 SKS</span>
+                        <h3 class="font-bold text-slate-900 text-lg">Pengembangan Keprofesian Berkelanjutan (PKB)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Program pembinaan diri bagi guru untuk meningkatkan kompetensi pedagogik, profesional, sosial, dan kepribadian secara konsisten sepanjang kariernya.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-3">
+                        <span class="text-xs font-bold text-brand-600">3 SKS</span>
+                        <h3 class="font-bold text-slate-900 text-lg">Pembelajaran Mendalam dan Asesmen (PMA) Lanjut</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Memantapkan asesmen formatif-sumatif yang adaptif untuk mendukung diferensiasi belajar peserta didik secara lebih presisi.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-3">
+                        <span class="text-xs font-bold text-brand-600">3 SKS</span>
+                        <h3 class="font-bold text-slate-900 text-lg">Pembelajaran Sosial Emosional (PSE)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Mengintegrasikan kerangka CASEL untuk menciptakan iklim kelas yang aman secara psikologis, berempati, serta mendukung kesejahteraan mental murid.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-3">
+                        <span class="text-xs font-bold text-brand-600">8 SKS</span>
+                        <h3 class="font-bold text-slate-900 text-lg">Praktek Pengalaman Lapangan (PPL) 2 - Mandiri</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Muara dari seluruh kompetensi pedagogis, tempat saya mengampu pembelajaran secara penuh, kontekstual, dan berdampak nyata di sekolah PPL.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-3">
+                        <span class="text-xs font-bold text-brand-600">2 SKS</span>
+                        <h3 class="font-bold text-slate-900 text-lg">Projek Kepemimpinan</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Melatih jiwa kepemimpinan guru dalam menginisiasi perubahan dan inovasi di ekosistem sekolah serta komunitas masyarakat.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-3">
+                        <span class="text-xs font-bold text-brand-600">Program Enrichment</span>
+                        <h3 class="font-bold text-slate-900 text-lg">MK Pilihan & Enrichment Program</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Pelengkapan kompetensi holistik melalui Pendidikan Inklusif Tingkat Dasar, Literasi Kesehatan Mental, serta penguatan komitmen lingkungan belajar aman via PPKPT.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. REFLEKSI PENGALAMAN BELAJAR SELAMA PPG -->
+        <section id="refleksi-ppg" class="page-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+                <div class="bg-white rounded-2xl p-8 sm:p-10 border border-brand-100 shadow-sm space-y-6">
+                    <span class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                        Sintesis Perjalanan Akademik (38 SKS)
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Refleksi Pengalaman Belajar Selama PPG</h2>
+                    
+                    <div class="space-y-4 text-slate-700 leading-relaxed text-justify">
+                        <h3 class="text-xl font-bold text-brand-800">Struktur Perjalanan Akademik & Kurikulum Terintegrasi</h3>
+                        <p>
+                            Perjalanan studi pada Program Pendidikan Profesi Guru (PPG) Calon Guru dirancang secara sistematis melalui kurikulum terintegrasi sebanyak 38 SKS selama dua semester. Seluruh mata kuliah dirangkai untuk menjembatani teori pedagogis, penguatan karakter diri, serta praktik lapangan yang kontekstual dan berakar pada realitas peserta didik.
+                        </p>
+                        <p>
+                            Evaluasi dan masukan untuk pengembangan diri ini disusun setelah memenuhi seluruh mata kuliah di semester 1 dan semester 2. Refleksi holistik ini menggambarkan transformasi paradigma baru sebagai mahasiswa PPG setelah mengikuti rangkaian mata kuliah Seminar PPG, di mana saya menyadari bahwa menjadi guru profesional adalah proses belajar berkelanjutan (lifelong learning).
+                        </p>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-200">
+                        <div class="bg-brand-50 p-6 rounded-xl border border-brand-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <div>
+                                <h4 class="font-bold text-slate-900">Dokumen Refleksi Pengalaman Belajar PPG</h4>
+                                <p class="text-xs text-slate-600">Simak paparan reflektif lengkap dan evaluasi komprehensif seluruh program.</p>
+                            </div>
+                            <a href="https://drive.google.com/file/d/1Mgx1zwnCD5hyU2A5I4Gk__lQHhCu4_FK/view?usp=sharing" target="_blank" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl shadow transition whitespace-nowrap">
+                                <i class="fa-solid fa-file-pdf mr-2"></i> Unduh Refleksi PPG (Drive)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. HASIL PENYUSUNAN KARYA INOVASI PENDIDIKAN -->
+        <section id="inovasi" class="page-section">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+                <!-- Banner Notification -->
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl flex items-center space-x-3 text-amber-800 text-sm">
+                    <i class="fa-solid fa-circle-info text-xl text-amber-600"></i>
+                    <span><strong>Pemberitahuan:</strong> Laman Hasil Penyusunan Karya Inovasi Pendidikan saat ini masih dalam proses penyempurnaan media.</span>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 sm:p-10 border border-brand-100 shadow-sm space-y-6">
+                    <div class="flex items-center space-x-3 text-brand-600">
+                        <i class="fa-solid fa-wand-magic-sparkles text-3xl"></i>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Hasil Penyusunan Karya Inovasi Pendidikan</h2>
+                    </div>
+
+                    <p class="text-slate-700 leading-relaxed text-justify text-base">
+                        Hasil penyusunan karya inovasi pendidikan ini merupakan buah dari refleksi atas pengalaman belajar paling bermakna selama mengikuti Program PPG Calon Guru. Produk ini dirancang berbasis prinsip kebaruan, kreativitas, kontekstualitas, serta keefektifan guna memecahkan tantangan nyata dalam pembelajaran IPS. Seluruh dokumen pendukung, wujud karya, dan rubrik penilaian LK 4 telah didokumentasikan secara terstruktur sebagai bukti komitmen pengembangan profesionalisme guru.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <span class="font-bold text-brand-700 text-sm flex items-center"><i class="fa-solid fa-gem mr-2"></i> Prinsip Kebaruan & Kreativitas</span>
+                            <p class="text-xs text-slate-600">Mengintegrasikan media pembelajaran interaktif berbasis teknologi untuk meningkatkan keterlibatan aktif siswa dalam materi IPS.</p>
+                        </div>
+                        <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <span class="font-bold text-brand-700 text-sm flex items-center"><i class="fa-solid fa-bullseye mr-2"></i> Kontekstual & Efektif</span>
+                            <p class="text-xs text-slate-600">Mengangkat kearifan lokal dan isu riil lingkungan sekitar siswa sehingga materi IPS mudah dipahami dan berdampak nyata.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-16 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-center">
+            <div class="flex justify-center items-center space-x-2 text-white font-bold text-base">
+                <span>Patriot Jiwo Tri Rahman</span>
+                <span>•</span>
+                <span class="text-brand-400">Pendidikan IPS UNY 2026</span>
+            </div>
+            <p class="max-w-xl mx-auto text-slate-400">
+                Portofolio Digital Seminar Pendidikan Profesi Guru Calon Guru Gelombang 2026. Universitas Negeri Yogyakarta.
+            </p>
+            <div class="pt-4 border-t border-slate-800 text-slate-500">
+                &copy; 2026 Patriot Jiwo Tri Rahman. All rights reserved. Designed for GitHub Pages.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR SPA NAVIGATION -->
+    <script>
+        function navigateTo(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // Show target section
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Update active state in nav buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                if (btn.getAttribute('data-target') === sectionId) {
+                    btn.classList.add('text-brand-600', 'bg-brand-50');
+                } else {
+                    btn.classList.remove('text-brand-600', 'bg-brand-50');
+                }
+            });
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
